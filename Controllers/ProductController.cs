@@ -9,26 +9,28 @@ using System.Threading.Tasks;
 using apidemo.Controllers;
 using apidemo.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Cors;
 
 namespace apidemo.Controllers
 {
     [ApiController]
-    [Route("api/[products]")]
+    //[EnableCors("AllowOrigin")]
+    [Route("api/[controller]")]
     public class ProductController : ControllerBase
     {
         private readonly BakeryContext db;  
-        public ProductController(BakeryContext db) => this.db = db;
-        public List<Product> Products { get; set; } = new List<Product>();  
-        
+        public ProductController(BakeryContext db) => this.db = db;        
+
         [HttpGet]
-        public async Task OnGetAsync()
+        public async Task<List<Product>> OnGetAsync()
         {
-            Products = await db.Products.ToListAsync();
-            if (Products == null)
-            {
-                return NotFound();
-            }
+            var Products = await db.Products.ToListAsync(); 
             return Products;
         }
-    }    
+    }
+
+    
+
+
 }
