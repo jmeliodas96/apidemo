@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Cors;
 namespace apidemo.Controllers
 {
     [ApiController]
-    //[EnableCors("AllowOrigin")]
+    [EnableCors("AllowOrigin")]
     [Route("api/[controller]")]
     public class ProductController : ControllerBase
     {
