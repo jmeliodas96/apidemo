@@ -20,7 +20,8 @@ namespace apidemo.Controllers
     public class ProductController : ControllerBase
     {
         private readonly BakeryContext db;  
-        public ProductController(BakeryContext db) => this.db = db;        
+        public ProductController(BakeryContext db) => this.db = db; 
+       
 
         [HttpGet]
         public async Task<List<Product>> OnGetAsync()
@@ -28,9 +29,7 @@ namespace apidemo.Controllers
             var Products = await db.Products.ToListAsync(); 
             return Products;
         }
+
     }
-
-    
-
 
 }
