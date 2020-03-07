@@ -42,6 +42,16 @@ namespace apidemo.Controllers
             return FeaturedProduct;
         }
 
+        [HttpGet("{id}")]
+        [ActionName("detail")]
+        public async Task<Product> OnGetProductDetail(int id)
+        {
+            var ProductDetail = await db.Products.FindAsync(id);
+            return ProductDetail;
+        }
+
+
+
     }
 
 }
