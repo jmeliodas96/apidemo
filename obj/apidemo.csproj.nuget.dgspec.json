@@ -49,6 +49,10 @@
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[3.1.2, )"
+            },
+            "System.Net.Mail": {
+              "target": "Package",
+              "version": "(, )"
             }
           },
           "imports": [

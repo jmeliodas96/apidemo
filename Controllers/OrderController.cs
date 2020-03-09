@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Cors;
 
+
 namespace apidemo.Controllers
 {
     [ApiController]
@@ -20,6 +21,8 @@ namespace apidemo.Controllers
     {
         private readonly BakeryContext db;  
         public OrderController(BakeryContext db) => this.db = db; 
+        
+        public Product Product { get; set; }
 
         //api/order
         [HttpPost]
@@ -29,6 +32,8 @@ namespace apidemo.Controllers
         [Produces("application/json")]
         public async Task<ActionResult<Order>> Create([FromBody] Order order)
         {
+     
+            //insert Order
             db.Orders.Add(order);
             await db.SaveChangesAsync();
 
@@ -37,6 +42,7 @@ namespace apidemo.Controllers
                 OrderShipping = order.OrderShipping,
                 OrderQuantity = order.OrderQuantity
                 }, order);
+
         }
 
 
