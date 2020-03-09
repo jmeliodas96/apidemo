@@ -15,8 +15,7 @@ using Microsoft.AspNetCore.Cors;
 namespace apidemo.Controllers
 {
     [ApiController]
-    [EnableCors("AllowOrigin")]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     public class OrderController : ControllerBase
     {
         private readonly BakeryContext db;  
@@ -24,6 +23,8 @@ namespace apidemo.Controllers
 
         //api/order
         [HttpPost]
+        [EnableCors("AnotherPolicy")]
+        [ActionName("create")]
         [Consumes("application/json")]
         [Produces("application/json")]
         public async Task<ActionResult<Order>> Create([FromBody] Order order)

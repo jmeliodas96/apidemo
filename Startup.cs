@@ -32,8 +32,23 @@ namespace apidemo
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowOrigin",
-                builder => builder.AllowAnyOrigin());
+                builder => 
+                    builder.AllowAnyOrigin()
+                
+                );
+
+                options.AddPolicy("AnotherPolicy",
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost:3000")
+                                        .AllowAnyHeader()
+                                        .AllowAnyMethod();
+                });
+
+
             });
+            
+
             services.AddControllers();
             services.AddDbContext<BakeryContext>();
 
@@ -52,6 +67,7 @@ namespace apidemo
             app.UseRouting();
 
             app.UseCors();
+
             
             app.UseAuthorization();
 
